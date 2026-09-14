@@ -5,6 +5,7 @@ function Leaderboard() {
   const [leaderboard, setLeaderboard] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  // Codespaces-aware API endpoint: https://${VITE_CODESPACE_NAME}-8000.app.github.dev/api/leaderboard
 
   useEffect(() => {
     const loadLeaderboard = async () => {
