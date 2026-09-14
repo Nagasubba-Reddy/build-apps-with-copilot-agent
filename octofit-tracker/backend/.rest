@@ -1,0 +1,74 @@
+@baseUrl = http://localhost:8000/api
+@contentType = application/json
+
+### Health Check
+GET {{baseUrl}}/health
+
+### Get API Info
+GET {{baseUrl}}/info
+
+### Get all users
+GET {{baseUrl}}/users
+
+### Create a new user
+POST {{baseUrl}}/users
+Content-Type: {{contentType}}
+
+{
+  "username": "johndoe",
+  "email": "john@example.com",
+  "password": "securepassword123",
+  "firstName": "John",
+  "lastName": "Doe",
+  "fitnessLevel": "beginner"
+}
+
+### Get specific user
+@userId = {response of Create a new user, $ .._id}
+GET {{baseUrl}}/users/{{userId}}
+
+### Get all activities
+GET {{baseUrl}}/activities
+
+### Log an activity
+POST {{baseUrl}}/activities
+Content-Type: {{contentType}}
+
+{
+  "userId": "{{userId}}",
+  "type": "running",
+  "duration": 30,
+  "distance": 5.2,
+  "calories": 400,
+  "intensity": "medium",
+  "date": "2026-09-14T10:00:00Z",
+  "notes": "Morning run at the park"
+}
+
+### Get user activities
+GET {{baseUrl}}/activities/user/{{userId}}
+
+### Get all teams
+GET {{baseUrl}}/teams
+
+### Create a team
+POST {{baseUrl}}/teams
+Content-Type: {{contentType}}
+
+{
+  "name": "Morning Runners",
+  "description": "A team dedicated to morning running routines",
+  "createdBy": "{{userId}}"
+}
+
+### Get leaderboard
+GET {{baseUrl}}/leaderboard
+
+### Get leaderboard by period
+GET {{baseUrl}}/leaderboard?period=weekly
+
+### Get user rank
+GET {{baseUrl}}/leaderboard/rank/{{userId}}
+
+### Get workout suggestions
+GET {{baseUrl}}/leaderboard/suggestions/{{userId}}
