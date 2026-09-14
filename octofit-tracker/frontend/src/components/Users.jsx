@@ -5,6 +5,7 @@ function Users() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  // Codespaces-aware API endpoint: https://${VITE_CODESPACE_NAME}-8000.app.github.dev/api/users
 
   useEffect(() => {
     const loadUsers = async () => {
